@@ -1,0 +1,169 @@
+<html lang="en">
+  <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drivecsx</title>
+        <link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
+    <link rel="stylesheet" href="css/Other pages.css">
+    <h1></h1>
+    
+      <style>
+    background{
+      opacity: 0.5;
+      
+      
+    }
+    h2{
+      text-align: center;
+      margin: 40px;
+      opacity: 0.8;
+      border-radius: 20px 20px 20px 20px;
+    }
+      p{
+        margin:40px;
+        text-align:center;
+        opacity: 0.8;
+        color: white ;
+        border-radius: 20px 20px 20px 20px;
+        
+        
+      }
+      img{
+        text-align: center;
+        position:relative;
+        right: -99px;
+        border-radius: 5px 5px 5px 5px;
+      }
+      a{
+        text-align: center;
+        background-color: black;
+        margin: 20px;
+        padding: 20px;
+        opacity: 0.8;
+     
+      }
+      a.house{
+        position: relative;
+        bottom: -90px;
+        border-radius:20px 20px 20px 20px;
+      }
+      a.get{
+        border-radius: 20px 20px 20px 20px;
+      }
+    </style>
+  </head>
+   <body>
+       <div class="tm-container">
+    <div class="tm-row">
+      
+                        <div class="tm-black-bg tm-special-item">
+                <img src="img/drift.jpeg" alt="Image">
+                <div class="tm-special-item-description">
+                  <h2 style="background-color:black;color:white">Fr Legends</h2>
+                  <p style="background-color:black;color:white">It is an immersive type drifting game where you can verse online drift tournaments and win those tournaments.</p>
+                  <div align="center"><a class="house" href="index.html">Home</a></div>
+                  <div align="center"><a class="get" href="apk/FR Legends 0.3.6.apk">Download Now </a></div>
+                </div>
+              </div>      
+                    <!-- Background video -->
+
+  <div class="tm-video-wrapper">
+
+      <i id="tm-video-control-button" class="fas fa-pause"></i>
+      <video autoplay muted loop id="tm-video">
+          <source src="video/1.mp4" type="video/mp4">
+      </video>
+  </div>
+
+
+  <script src="js/jquery-3.4.1.min.js"></script>    
+  <script>
+
+    function setVideoSize() {
+      const vidWidth = 5500;
+      const vidHeight = 7299;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const tempVidWidth = windowHeight * vidWidth / vidHeight;
+      const tempVidHeight = windowWidth * vidHeight / vidWidth;
+      const newVidWidth = tempVidWidth > windowWidth ? tempVidWidth : windowWidth;
+      const newVidHeight = tempVidHeight > windowHeight ? tempVidHeight : windowHeight;
+      const tmVideo = $('#tm-video');
+
+      tmVideo.css('width', newVidWidth);
+      tmVideo.css('height', newVidHeight);
+    }
+
+    function openTab(evt, id) {
+      $('.tm-tab-content').hide();
+      $('#' + id).show();
+      $('.tm-tab-link').removeClass('active');
+      $(evt.currentTarget).addClass('active');
+    }    
+
+    function initPage() {
+      let pageId = location.hash;
+
+      if(pageId) {
+        highlightMenu($(`.tm-page-link[href^="${pageId}"]`)); 
+        showPage($(pageId));
+      }
+      else {
+        pageId = $('.tm-page-link.active').attr('href');
+        showPage($(pageId));
+      }
+    }
+
+    function highlightMenu(menuItem) {
+      $('.tm-page-link').removeClass('active');
+      menuItem.addClass('active');
+    }
+
+    function showPage(page) {
+      $('.tm-page-content').hide();
+      page.show();
+    }
+
+    $(document).ready(function(){
+            /************** Video background *********/
+
+
+
+      setVideoSize();
+
+      // Set video background size based on window size
+      let timeout;
+      window.onresize = function(){
+        clearTimeout(timeout);
+        timeout = setTimeout(setVideoSize, 20);
+      };
+
+      // Play/Pause button for video background      
+      const btn = $("#tm-video-control-button");
+
+      btn.on("click", function(e) {
+        const video = document.getElementById("tm-video");
+        $(this).removeClass();
+
+        if (video.paused) {
+          video.play();
+          $(this).addClass("fas fa-pause");
+        } else {
+          video.pause();
+          $(this).addClass("fas fa-play");
+        }
+      });
+    });
+      
+  </script>
+
+     
+     
+   </body>
+  
+  
+  
+  
+  
+</html>
